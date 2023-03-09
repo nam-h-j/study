@@ -56,3 +56,5 @@ for (const state of stetes){
   // ~~~ Property 'capital' dose not exist on type `{name: string; capitol; string;}` Did you mean 'capitol'?
 }
 ```
+
+
