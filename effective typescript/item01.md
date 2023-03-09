@@ -1,1 +1,58 @@
-# item01.md
+# item01.md | 타입스크립트와 자바스크립트의 관계
+- 타입스크립트는 자바스크립트의 슈퍼셋
+- 확장자 .ts, .tsx
+- js 파일 확장자를 ts로 바꾸더라도 변화하는 것은 없음.
+
+- ts의 타입체커가 자세하게 문제점을 찾아준다.
+```ts
+let city = 'new york city'
+console.log(city.toUppercase())
+// ~~~ Property 'toUppercase' does not exist on type 'string'. Did you mean 'toUpperCase'?
+exoirt default{}
+```
+- ts의 타입체커는 추가적인 타입 구문이 없어도 문제점을 찾아낸다.
+```ts
+const states = [
+  { name: 'Alabama', capital: 'Montgomery' },
+  { name: 'Alaska', capital: 'Juneau' },
+  { name: 'Arizona', capital: 'Phoneix' }
+  // ...
+]
+for (const state of stetes){
+  console.log(state.capitol)
+  // ~~~ Property 'capitol' dose not exist on type `{name: string; capital; string;}` Did you mean 'capital'?
+}
+```
+
+- 타입체커가 코드의 잘못된 점을 정확하게 찾아내지는 못하므로(아래처럼 타이포 같은 경우)
+- states를 선언해서 명시적으로 하는 것이 좋다. 
+```ts
+// without states
+const states = [
+  { name: 'Alabama', capitol: 'Montgomery' },
+  { name: 'Alaska', capitol: 'Juneau' },
+  { name: 'Arizona', capitol: 'Phoneix' }
+  // ...
+]
+for (const state of stetes){
+  console.log(state.capital)
+  // ~~~ Property 'capital' dose not exist on type `{name: string; capitol; string;}` Did you mean 'capitol'?
+}
+```
+```ts
+// with states
+interface State{
+  name: string
+  capital: string
+}
+const states: State[] = [
+  { name: 'Alabama', capitol: 'Montgomery' },
+  { name: 'Alaska', capitol: 'Juneau' },
+  { name: 'Arizona', capitol: 'Phoneix' }
+  // ~~~ Object literal may only specifiy known properties, but 'capitol' does not exist in type 'State'. Did you mean to write 'capital'?
+]
+for (const state of stetes){
+  console.log(state.capital)
+  // ~~~ Property 'capital' dose not exist on type `{name: string; capitol; string;}` Did you mean 'capitol'?
+}
+```
