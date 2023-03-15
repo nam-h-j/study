@@ -2,7 +2,8 @@
 - 큰돌님의 프론트엔드 면접 강의 내용을 정리한 문서입니다.
 - 문제시 비공개로 전환하겠습니다.
 - https://www.inflearn.com/course/%ED%94%84%EB%A1%A0%ED%8A%B8%EC%97%94%EB%93%9C-%EB%A9%B4%EC%A0%91-%ED%81%B0%EB%8F%8C/dashboard
-- 
+***
+
 ## 0_JS
 ### 1_호출스택(call stack)
 - JS는 단일 콜스택을 기반으로 실행된다(싱글쓰레드)
@@ -11,3 +12,5 @@
 
 ## 자바스크립트 동작을 시각화 해주는 사이트
   - http://latentflip.com/loupe
+***
+### 2_
