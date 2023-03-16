@@ -12,6 +12,7 @@
 ```
 - XML
 ```XML
+<?xml version="1.0" encoding="UTF-8"?> //프롤로그
 <employees>
   <employee>
     <firstName>John</firstName> <lastName>Doe</lastName>
