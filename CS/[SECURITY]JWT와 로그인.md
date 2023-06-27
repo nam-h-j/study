@@ -103,3 +103,22 @@
   "username": "johndoe" //비공개 클레임
 }
 ```
+
+### Signature
+
+- 서명, 헤더의 인코딩 값, 정보(payload)의 인코딩값을 합친 후 비밀키로 해시 하여 생성
+
+```
+//슈도코드
+HMACSHA256(
+  base64UrlEncode(header) + "." +
+  base64UrlEncode(payload),
+  secret)
+```
+
+- 해시 값을 base64형태로 인코딩 (hex => base64)
+
+### Token
+
+- 위의 세가지 인코딩 값을 "." 을 중간자로 하여 합쳐주면 하나의 토큰이 된다.
+- 완성된 토큰 값은 https://jwt.io/ 의 디버거에서 내용 확인이 가능하다.
