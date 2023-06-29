@@ -76,5 +76,81 @@
 - 너무 무거운 node_modules
 
   - npm과 yarn에서 node_modules가 제대로 설치 되었는지 검사하지 않는다.
+  - 그래서 실무에서 node_modules를 삭제하고 재설치하면 정상 작동하는 경우가 종종 있다.
 
-  https://www.youtube.com/watch?v=Ds7EjE8Rhjs
+## pnpm
+
+- npm을 기본으로 따라가지만 평탄화(호이스팅)구조를 중첩(계층)구조로 관리한다.
+- 심볼릭 링크를 통해서 중복으로 사용되는 의존성을 사용한다.
+
+```
+// npm의 구조 예시
+.bin
+accepts
+array-flatten
+body-parser
+bytes
+content-disposition
+cookie-signature
+cookie
+debug
+depd
+...
+```
+
+```
+//pnpm 구조 예시
+- node_modules
+  - .pnpm
+    - accepts@1.X.X
+    - array-flatten@1.X.X
+    ...
+    - express@4.XX.X
+      - node_modules
+        - accepts
+        - array-flatten
+        - body-parser
+        - content-disposition
+        ...
+        - etag
+        - express
+          - lib
+            - history.md
+            - index.js
+            - License
+            - package.json
+            - readme.md
+```
+
+## yarn berry
+
+- node_modules를 사용하지 않는 컨셉
+
+### yarn berry 구조
+
+- node_modules가 없음
+
+```
+- .yarn/
+  - cache/
+  - release/
+    - yarn-3.X.X.cjs
+  - sdk/
+  - unplugged/
+- .pnp.cjs
+- .pnp.loader.mjs
+- .yarnrc.yml
+- package.json
+- yarn.lock
+```
+
+### cache
+
+- cache 폴더 내부에 모듈을 zip 파일 형태로 보관
+- Zero Install, install이 불필요
+- 오프라인시에 캐싱기능으로 사용가능
+- ci 배포시에 clone만 하면 의존성이 다 포함되어 있기 때문에 배포속도에 유리(배포 후에 의존성 설치하는 과정이 필요하지 않음)
+
+### plug 'n' play
+
+- https://www.youtube.com/watch?v=Ds7EjE8Rhjs
