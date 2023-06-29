@@ -153,4 +153,45 @@ depd
 
 ### plug 'n' play
 
-- https://www.youtube.com/watch?v=Ds7EjE8Rhjs
+- 기존 npm은 종속성 트리 아래의 패키지를 병함 및 호이스팅 함.
+- 기존 방식은 루트경로에서 패키지를 바로 탐색하기 때문에 효율적인 부분이 있다.
+- 하지만 효율면에선 좋지만 간접설치된 종속성에 개발자가 접근하거나, 존재하지 않는 종속성에 의존하는 코드가 발생한다.(유령의존성)
+- yarn berry에서는 호이스팅 동작이 일어나지 않게 nohoist 옵션이 기본이다.
+- 그리고 효율성을 높이기 위해서 pnp 개념을 채택했다.
+- .yarn 경로 하위에 의존성들을 .zip 포맷으로 압축 저장,
+- .pnp.cjs 파일에 의존성 트리 정보를 저장한다. 이를 인터페이스 링커(Interface Linker)라고 함
+
+```json
+ ["@babel/helper-module-transforms", [\ //패키지 이름
+        ["npm:7.19.6", {\ //버전
+          "packageLocation": "./.yarn/cache/@babel-helper-module-transforms-npm-7.19.6-c73ab63519-c28692b37d.zip/node_modules/@babel/helper-module-transforms/",\ // 위치
+          "packageDependencies": [\ // 참조하는 의존성
+            ["@babel/helper-module-transforms", "npm:7.19.6"],\
+            ["@babel/helper-environment-visitor", "npm:7.18.9"],\
+            ["@babel/helper-module-imports", "npm:7.18.6"],\
+            ["@babel/helper-simple-access", "npm:7.19.4"],\
+            ["@babel/helper-split-export-declaration", "npm:7.18.6"],\
+            ["@babel/helper-validator-identifier", "npm:7.19.1"],\
+            ["@babel/template", "npm:7.18.10"],\
+            ["@babel/traverse", "npm:7.19.6"],\
+            ["@babel/types", "npm:7.20.2"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+```
+
+## 각 패키지 항목별 성능비교
+
+| 항목                              | npm        | yarn       | pnpm       | yarnberry  |
+| --------------------------------- | ---------- | ---------- | ---------- | ---------- |
+| 용량                              | 100%       | 100%       | 80%        | 40%        |
+| 파일개수                          | 100%       | 90%        | 100%       | 70%        |
+| 속도(clean Install)               | 100%       | 50%        | 50%        | 70%        |
+| 속도(cache and with node_modules) | 큰차이없음 | 큰차이없음 | 큰차이없음 | 큰차이없음 |
+| 속도(update)                      | 10%        | 50%        | 30%        | 100%       |
+
+- npm : 사이즈가 작은 프로젝트 / 사용성 편함, 트러블슈팅 쉬움, 느림, 무거움
+- pnpm : 사이즈가 큰 프로젝트 / 트러블슈팅 어렵지만 여러가지 성능 이점 많음
+- yarn : yarnberry 이후 업데이트 없음 사용안하는게 좋음
+- yarnberry : 사이즈가 큰 프로젝트 /
