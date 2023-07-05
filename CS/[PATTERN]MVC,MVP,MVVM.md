@@ -20,10 +20,9 @@
   - View가 ViewModel을 subscribe(or watch)해서 데이터를 표시
      
 ## 각 요소들의 역할
-
-- MVC에서 요소들의 역할
-  - Model : View에 표시하기 위한 데이터
-  - View : 화면에 보여지
-  - Controller : 인풋, 처리, 결과 출력 담당
-## MVP
+- MVC
+  - Model : 데이터
+  - View : 화면
+  - Controller : 인풋, 처리, 출력 담당
+- MVP
 - M
