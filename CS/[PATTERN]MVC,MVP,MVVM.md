@@ -6,7 +6,7 @@
 - Flux : Action, Dispatcher, Store, View
 
 ## 데이터의 흐름 차이
-![image](https://github.com/nowispresent/study/assets/113965342/fcdea181-74d5-4427-b049-03b24d5c20f6){: width="200"}
+![image](https://github.com/nowispresent/study/assets/113965342/fcdea181-74d5-4427-b049-03b24d5c20f6){: width="100px"}
 - MVC
   - Input => Controller => Model => View
   - Input => Controller => View
