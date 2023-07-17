@@ -3,9 +3,9 @@
   > How to synchronize data (state) in the frontend.
 # 양방향 바인딩 (two-way data binding)
 ## 구조 (struct)
-- mvc 패턴의 경우
+- mvc 패턴의 경우<br/>
 ![image](https://github.com/nowispresent/study/assets/113965342/c1f1bb98-93e6-47fe-891d-c3443cfa61f4)
-<br>
+<br/>
 - way1 : 뷰 -> 이벤트 -> 컨트롤러 -> 모델 -> 뷰
 - way2 : 컨트롤러 -> 뷰
 ## 장점
