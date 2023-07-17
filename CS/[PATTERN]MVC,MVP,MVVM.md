@@ -46,16 +46,25 @@
 - 어플리케이션이 복잡해 질 수록 View와 Presenter 사이의 의존성이 강해지는 단점.
 - View와 Presenter가 1:1관계 이므로 View의 수만큼 Presenter를 만들어야 함.
 
-### MVVM
+## MVVM
 ![image](https://github.com/nowispresent/study/assets/113965342/5ee66c45-a8d2-4bf3-96bf-bda7dc9ec2c7)
 ### 흐름
 - Input => View => ViewModel => Model => ViewModel <= View
 - View가 ViewModel을 subscribe(or watch)해서 데이터를 표시
-     
-  - 화면과 분리해서 처리 가능해짐, 테스트 가능해짐
-  - 하나의 프레젠터는 하나의 뷰를 처리
-- MVVM
-  - Model : 데이터
-  - View : 화면, 입력, 출력(구독) 담당
-  - ViewModel : 처리 담당
-  
+### 역할
+- Model : 데이터
+- View : 화면, 입력, 출력(구독) 담당
+- ViewModel : 처리 담당
+### 특징
+- Command 패턴과 Data Binding 두 가지 패턴을 사용하여 구현.
+- 이를 통해 View와 View Model 사이의 의존성을 제거.
+- View Model과 View는 1:n 관계.
+### 장점
+- MVVM 패턴은 View와 Model 사이의 의존성이 없다.
+- View와 View Model 사이의 의존성도 없다.
+- 각각의 부분이 독립적이기 때문에 모듈화 가능, 테스트 가능.
+### 단점
+- View Model의 설계가 어렵다.
+- 단순한 어플리케이션의 경우 맞지 않는 방식
+
+## Command 패턴이란?
