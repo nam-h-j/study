@@ -5,6 +5,7 @@
 ## 구조 (struct)
 - mvc 패턴의 경우
 ![image](https://github.com/nowispresent/study/assets/113965342/c1f1bb98-93e6-47fe-891d-c3443cfa61f4)
+<br>
 - way1 : 뷰 -> 이벤트 -> 컨트롤러 -> 모델 -> 뷰
 - way2 : 컨트롤러 -> 뷰
 ## 장점
