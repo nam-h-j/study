@@ -1,0 +1,17 @@
+# Command Pattern
+- 명령패턴, 커맨드패턴
+- 명령들을 추상화(캡슐화) 시켜서 클래스, 오브젝트로 관리하는 패턴
+- 다른 클래스, 오브젝트의 액션을 실행하거나 간단한 기능들을 실행
+- 명령(command) / 수신자(Receiver) / 발동자(invoker) / 클라이언트(client)
+
+## Command Patter 흐름
+- command -> receiver <- command <- invoker
+- 
+## Command 패턴 구조
+```js
+class Calc{
+  constructor(){
+    this.value = 0
+  }
+}
+```
